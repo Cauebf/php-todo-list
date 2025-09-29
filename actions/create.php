@@ -17,6 +17,6 @@ try {
     header("Location: ../index.php"); // Redirect to index page
     exit;
 } catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
+    echo "Error: " . $e->getMessage();
     exit;
 }

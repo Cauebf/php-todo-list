@@ -1,5 +1,15 @@
 <?php
 include_once 'config/conn.php';
+
+$tasks = [];
+
+$sql = "SELECT * FROM tasks ORDER BY id ASC"; // Select all tasks in ascending order
+$stmt = $conn->query($sql); // Execute the query
+
+// Check if there are any tasks
+if ($stmt->rowCount() > 0) {
+    $tasks = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all tasks as an associative array (key->value pairs)
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +39,40 @@ include_once 'config/conn.php';
         </form>
 
         <div id="tasks">
+            <?php foreach ($tasks as $task): ?>
+                <div class="task">
+                    <input
+                        type="checkbox"
+                        name="progress"
+                        class="progress <?= $task['completed'] ? 'done' : '' ?>"
+                        <?= $task['completed'] ? 'checked' : '' ?> 
+                    />
 
+                    <p class="task-description">
+                        <?= // equivalent to <?php echo 
+                        htmlspecialchars($task['description']) // htmlspecialchars() converts special characters to HTML entities to prevent XSS 
+                        ?>
+                    </p>
+
+                    <div class="task-actions">
+                        <a class="action-button edit-button">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a href="actions/delete.php?id=<?= $task['id'] ?>" class="action-button delete-button">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    </div>
+
+                    <form action="actions/update.php" method="POST" class="to-do-form edit-task hidden">
+                        <input type="hidden" name="id" value="<?= $task['id'] ?>">
+                        <input type="text" name="description" value="<?= htmlspecialchars($task['description']) ?>" />
+                        <button type="submit" class="form-button confirm-button">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                          
+                    </form>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 

@@ -12,7 +12,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-image: url("../../images/background.svg");
+  background-image: url("../images/background.svg");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -83,6 +83,7 @@ body {
   background-color: #191933;
   padding: 8px 12px;
   border-radius: 4px;
+  height: 50px;
 }
 
 .task .progress {
@@ -112,6 +113,7 @@ body {
 
 .action-button.edit-button {
   color: #6c9bbc;
+  cursor: pointer;
 }
 
 .action-button.delete-button {
@@ -120,6 +122,11 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+.edit-task input {
+  margin-left: 7px;
+  margin-right: 7px;
 }
 
 @media screen and (max-width: 600px) {

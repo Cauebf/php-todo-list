@@ -69,7 +69,6 @@ if ($stmt->rowCount() > 0) {
                         <button type="submit" class="form-button confirm-button">
                             <i class="fa-solid fa-check"></i>
                         </button>
-                          
                     </form>
                 </div>
             <?php endforeach; ?>

@@ -46,6 +46,7 @@ if ($stmt->rowCount() > 0) {
                         name="progress"
                         class="progress <?= $task['completed'] ? 'done' : '' ?>"
                         <?= $task['completed'] ? 'checked' : '' ?> 
+                        data-task-id="<?= $task['id'] // store the task id in the data attribute ?>"
                     />
 
                     <p class="task-description">
